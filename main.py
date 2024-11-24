@@ -57,6 +57,7 @@ def doesPlaylistExist(sp):
         if item['name'] == 'Newest_Releases':
             playlist_id = item['id']
             p_exists = True
+            break
 
     return p_exists
 
@@ -109,8 +110,21 @@ def getNewTracks(sp,user,today,one_week_past):
                     newR.append(a)
         else:
             for a in albums:
-                if int(a['release_date'][0:4]) >= one_week_past.year and int(a['release_date'][6:7]) >= one_week_past.month and int(a['release_date'][8:9]) >= one_week_past.day: #gets the list of albums released withing a certian date
-                    newR.append(a)
+                print("Greater than or equal to")
+                print(int(a['release_date'][0:4]))                
+                
+                
+                if int(a['release_date'][0:4]) < one_week_past.year:
+                    print("Release date is to old")
+
+                else:
+                    print("Month: " + str(int(a['release_date'][5:7])))
+
+                    print("Day: " + str(int(a['release_date'][8:10])))
+                    if int(a['release_date'][5:7]) >= one_week_past.month and int(a['release_date'][8:10]) >= one_week_past.day: #gets the list of albums released withing a certian date
+                        print(str(a) + "album was added")
+                        newR.append(a)
+
 
 
 
